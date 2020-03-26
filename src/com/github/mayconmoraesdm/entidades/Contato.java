@@ -97,9 +97,9 @@ public class Contato extends Entidade{
 
     public Contato(String nome) {
         try {
-            Contato contatoBd = this.busca(id);
+            Contato contatoBd = this.busca(nome);
             setId(contatoBd.getId());
-            setNome(nome);
+            setNome(contatoBd.getNome());
             setTelefone(contatoBd.getTelefone());
             setCelular(contatoBd.getCelular());
             setEmail(contatoBd.getEmail());

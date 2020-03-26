@@ -15,8 +15,10 @@ public interface Persiste {
 
     public List busca() throws SQLException;
     public Entidade busca(Integer id) throws SQLException;
+    public Entidade busca(String nome) throws SQLException;
     public Boolean insere()  throws SQLException;
     public Boolean altera()  throws SQLException;
     public Boolean exclui()  throws SQLException;
+
 
 }

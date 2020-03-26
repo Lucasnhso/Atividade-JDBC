@@ -139,7 +139,7 @@ public class Contato extends Entidade{
         return contatos;
     }
 
-    @Override
+    //@Override
     public Contato busca(Integer id) throws SQLException {
        try (Connection conn = FabricaJDBC.criaConn()) {
                 String sql = "SELECT * FROM contatos where id = ?;";

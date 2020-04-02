@@ -127,7 +127,7 @@ public class Programa {
     public static void altera() {
         Scanner scanner = new Scanner(System.in);
         int id, opcao = 0;
-        String dado;
+
         //int opcaoAnterior[];
 
 
@@ -136,46 +136,7 @@ public class Programa {
             System.out.println("Digite o id do que deseja alterar:");
             id = scanner.nextInt();
             Contato contato = new Contato(id);
-            while (opcao != 7){
-                System.out.println("Qual campo deseja alterar?");
-                System.out.println("1: Nome\n2: Telefone\n3: Celular\n4: Email\n5: Telefone2\n6: Celular2:\n7: Sair");
-                opcao = scanner.nextInt();
-                //opcaoAnterior= opcao;
-                switch (opcao){
-                    case 1:
-                        System.out.println("Novo nome:");
-                        dado = scanner.nextLine();
-                        contato.setNome(dado);
-                        break;
-                    case 2:
-                        System.out.println("Novo telefone:");
-                        dado = scanner.nextLine();
-                        contato.setTelefone(dado);
-                        break;
-                    case 3:
-                        System.out.println("Novo celular:");
-                        dado = scanner.nextLine();
-                        contato.setCelular(dado);
-                        break;
-                    case 4:
-                        System.out.println("Novo Email:");
-                        dado = scanner.nextLine();
-                        contato.setEmail(dado);
-                        break;
-                    case 5:
-                        System.out.println("Novo telefone2:");
-                        dado = scanner.nextLine();
-                        contato.setTelefone2(dado);
-                        break;
-                    case 6:
-                        System.out.println("Novo celular2:");
-                        dado = scanner.nextLine();
-                        contato.setCelular2(dado);
-                        break;
-                    default:
-                        System.out.println("Opcão inválida");
-                }
-            }
+            menuAltera(contato);
             //contato.setEmail("maycon@emailteste.com");
             contato.altera();
         } catch (SQLException e) {
@@ -183,10 +144,73 @@ public class Programa {
         }
     }
 
+    public static void menuAltera(Contato contato){
+        Scanner scanner = new Scanner(System.in);
+        int opcao =0;
+        String dado;
+
+        System.out.println("Qual campo deseja alterar?");
+        System.out.println("1: Nome\n2: Telefone\n3: Celular\n4: Email\n5: Telefone2\n6: Celular2:\n7: Sair");
+        opcao = scanner.nextInt();
+        //opcaoAnterior= opcao;
+        switch (opcao){
+            case 1:
+                dado = scanner.nextLine();
+                System.out.println("Novo nome:");
+                dado = scanner.nextLine();
+                contato.setNome(dado);
+                menuAltera(contato);
+                break;
+            case 2:
+                dado = scanner.nextLine();
+                System.out.println("Novo telefone:");
+                dado = scanner.nextLine();
+                contato.setTelefone(dado);
+                menuAltera(contato);
+                break;
+            case 3:
+                dado = scanner.nextLine();
+                System.out.println("Novo celular:");
+                dado = scanner.nextLine();
+                contato.setCelular(dado);
+                menuAltera(contato);
+                break;
+            case 4:
+                dado = scanner.nextLine();
+                System.out.println("Novo Email:");
+                dado = scanner.nextLine();
+                contato.setEmail(dado);
+                menuAltera(contato);
+                break;
+            case 5:
+                dado = scanner.nextLine();
+                System.out.println("Novo telefone2:");
+                dado = scanner.nextLine();
+                contato.setTelefone2(dado);
+                menuAltera(contato);
+                break;
+            case 6:
+                dado = scanner.nextLine();
+                System.out.println("Novo celular2:");
+                dado = scanner.nextLine();
+                contato.setCelular2(dado);
+                menuAltera(contato);
+                break;
+            case 7:
+                break;
+            default:
+                System.out.println("Opcao invalida");
+                menuAltera(contato);
+        }
+    }
+
     public static void exclui() {
+        Scanner scanner = new Scanner(System.in);
+        int id;
         try {
-            System.out.println("Excluindo contato");
-            Contato contato = new Contato(5);
+            System.out.println("Digite o id que deseja excluir");
+            id = scanner.nextInt();
+            Contato contato = new Contato(id);
             contato.exclui();
         } catch (SQLException e) {
             e.printStackTrace();

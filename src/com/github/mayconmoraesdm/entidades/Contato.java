@@ -68,7 +68,7 @@ public class Contato extends Entidade{
     }
 
     public void setCelular2(String celular2) {
-        this.celular = celular2;
+        this.celular2 = celular2;
     }
 
     /**
@@ -139,7 +139,7 @@ public class Contato extends Entidade{
         return contatos;
     }
 
-    //@Override
+    @Override
     public Contato busca(Integer id) throws SQLException {
        try (Connection conn = FabricaJDBC.criaConn()) {
                 String sql = "SELECT * FROM contatos where id = ?;";
@@ -162,11 +162,12 @@ public class Contato extends Entidade{
         return null;
     }
 
+    @Override
     public Contato busca(String nome) throws SQLException {
         try (Connection conn = FabricaJDBC.criaConn()) {
             String sql = "SELECT * FROM contatos where nome like ?;";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, "$" + nome + "$");
+            preparedStatement.setString(1, "%" + nome + "%");
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -207,18 +208,19 @@ public class Contato extends Entidade{
                          "SET nome = ?," +
                          "telefone = ?," +
                          "celular = ?," +
-                         "email = ?" +
+                         "email = ?," +
                          "telefone2 = ?,"+
-                         "celular2 = ?,"+
+                         "celular2 = ?"+
                          "WHERE id = ?;";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, getNome());
             preparedStatement.setString(2, getTelefone());
             preparedStatement.setString(3, getCelular());
             preparedStatement.setString(4, getEmail());
-            preparedStatement.setInt( 5, getId());
-            preparedStatement.setString(6, getTelefone2());
-            preparedStatement.setString(7, getCelular2());
+            preparedStatement.setString(5, getTelefone2());
+            preparedStatement.setString(6, getCelular2());
+            preparedStatement.setInt( 7, getId());
+
             preparedStatement.execute();
             return true;
         }
